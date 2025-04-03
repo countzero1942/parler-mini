@@ -2,6 +2,10 @@
 
 A Python application for generating text-to-speech audio using the Parler TTS Mini model with various voice profiles.
 
+## Note
+
+This project is a work in progress and is not yet ready for production use.
+
 ## Features
 
 - Generate speech with a specific voice by name or index

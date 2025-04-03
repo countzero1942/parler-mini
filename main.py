@@ -2,6 +2,7 @@
 import argparse
 import torch
 import os
+import time
 from parler_tts import ParlerTTSForConditionalGeneration
 from transformers import AutoTokenizer
 import soundfile as sf
@@ -105,7 +106,13 @@ def generate_all_voices(text, is_female=True, output_dir="voices", description_t
         
         print(f"Generating speech with {gender} voice [{i}]: {name}")
         
+        # Measure generation time
+        start_time = time.perf_counter()
         generation = model.generate(input_ids=input_ids, prompt_input_ids=prompt_input_ids)
+        end_time = time.perf_counter()
+        generation_time = end_time - start_time
+        print(f"Generation time: {generation_time:.2f} seconds")
+        
         audio_arr = generation.cpu().numpy().squeeze()
         
         # Save to file
@@ -169,7 +176,7 @@ def stuff():
 
 
 def main():
-    prompt = f"Hey, are you feeling freaky today? I'm feeling freakin' freaky!"
+    prompt = f"Hey! Are you feeling freaky today? I'm feeling freakin' freaky!"
     generate_all_voices(prompt, is_female=True)
 
 if __name__ == "__main__":
