@@ -1,0 +1,9 @@
+line-length = 80
+
+# Include all Python files, including tests
+include = ["*.py", "tests/**/*.py"]
+
+[format]
+quote-style = "single"
+indent-style = "tab"
+docstring-code-format = true
